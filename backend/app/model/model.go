@@ -30,6 +30,21 @@ type User struct {
 	DeletedAt    *time.Time
 }
 
+type Company struct{
+	Id_company   	uint   `gorm:"primary_key"`
+	Com_Name    	string ` json:"comname"`
+	Com_Desc     	string ` json:"comdesc"`
+	Com_Image       string ` json:"comimage"`
+	Com_Portfolio  	string ` json:"portfolio"`
+	Com_Slogan 		string ` json:"slogan"`
+	Com_Address     string ` json:"address"`
+	Com_Website     string 	`json:"website"`
+	Com_Facebook  	string  `json:"facebook"`
+	Com_Linkedin    string  `json:"linkedin"`
+	Com_Instagram	string  `json:"instagram"`
+	Com_Google		string  `json:"google"`
+}
+
 func (e *Employee) Disable() {
 	e.Status = false
 }
@@ -43,6 +58,14 @@ func (e *User) Disable() {
 }
 
 func (p *User) Enable() {
+	p.Status = true
+}
+
+func (e *Company) Disable() {
+	e.Status = false
+}
+
+func (p *Company) Enable() {
 	p.Status = true
 }
 
