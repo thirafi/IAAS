@@ -38,7 +38,7 @@ func (a *App) Initialize(config *config.Config) {
 
 // Set all required routers
 func (a *App) setRouters() {
-	// Routing for handling the projects
+	// Routing for handling employee
 	a.Get("/", a.HelloWorld)
 	a.Get("/employees", a.GetAllEmployees)
 	a.Post("/employees", a.CreateEmployee)
@@ -47,6 +47,14 @@ func (a *App) setRouters() {
 	a.Delete("/employees/{name}", a.DeleteEmployee)
 	a.Put("/employees/{name}/disable", a.DisableEmployee)
 	a.Put("/employees/{name}/enable", a.EnableEmployee)
+	// Routing for handling user
+	a.Get("/users", a.GetAllUsers)
+	a.Post("/users", a.CreateUser)
+	a.Get("/users/{id}", a.GetUser)
+	a.Put("/users/{id}", a.UpdateUser)
+	a.Delete("/users/{id}", a.DeleteUser)
+	a.Put("/users/{id}/disable", a.DisableUser)
+	a.Put("/users/{id}/enable", a.EnableUser)
 }
 
 // Wrap the router for GET method
@@ -100,6 +108,35 @@ func (a *App) DisableEmployee(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) EnableEmployee(w http.ResponseWriter, r *http.Request) {
 	handler.EnableEmployee(a.DB, w, r)
+}
+
+// Handlers to manage User Data
+func (a *App) GetAllUsers(w http.ResponseWriter, r *http.Request) {
+	handler.GetAllUsers(a.DB, w, r)
+}
+
+func (a *App) CreateUser(w http.ResponseWriter, r *http.Request) {
+	handler.CreateUser(a.DB, w, r)
+}
+
+func (a *App) GetUser(w http.ResponseWriter, r *http.Request) {
+	handler.GetUser(a.DB, w, r)
+}
+
+func (a *App) UpdateUser(w http.ResponseWriter, r *http.Request) {
+	handler.UpdateUser(a.DB, w, r)
+}
+
+func (a *App) DeleteUser(w http.ResponseWriter, r *http.Request) {
+	handler.DeleteUser(a.DB, w, r)
+}
+
+func (a *App) DisableUser(w http.ResponseWriter, r *http.Request) {
+	handler.DisableUser(a.DB, w, r)
+}
+
+func (a *App) EnableUser(w http.ResponseWriter, r *http.Request) {
+	handler.EnableUser(a.DB, w, r)
 }
 
 // Run the app on it's router
