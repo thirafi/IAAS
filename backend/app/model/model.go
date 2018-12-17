@@ -25,9 +25,52 @@ type User struct {
 	Role         string `json:"city"`
 	Nationality  int    `json:"age"`
 	Status       bool   `json:"status"`
+	Health       Health `json:"health"`
+	Address      Address `json:"address"`
+	Contact			 Contact `json:"contact"`
+	Language	   []Language `json:"language"`
+	Period			 []Period `json:"period"`
 	CreatedAt    time.Time
 	UpdatedAt    time.Time
 	DeletedAt    *time.Time
+}
+
+type Health struct {
+	Id_user      uint
+	Smoke        bool `json:"smoke"`
+	Problem      string `json:"problem"`
+	Restriction  string `json:restriction`
+}
+
+type Address struct {
+	Id_user      uint
+	City         string `json:"city"`
+	Province     string `json:"province"`
+	PostalCode   uint `json:"postalcode"`
+}
+
+type Contact struct {
+	Id_user      uint
+	Phone				uint `json:"phone"`
+	EmergencyPhone 		uint `json:"emergencyphone"`
+	EmergencyName  		string `json:"emergencyname"`
+	EmergencyRelation string `json:"emergencyrelation"`
+}
+
+type Language struct {
+	Id_user      uint
+	Language	  string `json:"language"`
+	Speaking	  string `json:"speaking"`
+	Structure		string `json:"structure"`
+	Reading			string `json:"reading"`
+	Writing			string `json:"writing"`
+}
+
+type Period struct {
+	Id_user      uint
+	Start       string `json:"start"`
+	Finish      string `json:"finish"`
+	Length		  string `json:"length"`
 }
 
 type Company struct {
@@ -93,8 +136,14 @@ func (p *Job) Enable() {
 	p.Status = true
 }
 
+// db.Model(&user).Related(&health)
+// db.Model(&user).Related(&address)
+// db.Model(&user).Related(&contact)
+// db.Model(&user).Related(&languages)
+// db.Model(&user).Related(&periods)
+
 // DBMigrate will create and migrate the tables, and then make the some relationships if necessary
 func DBMigrate(db *gorm.DB) *gorm.DB {
-	db.AutoMigrate(&Employee{}, &User{})
+	db.AutoMigrate(&Employee{}, &User{}, &Health{}, &Address{}, &Contact{}, &Language{}, &Period{})
 	return db
 }
