@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HostingplaceComponent } from './pages/hostingplace/hostingplace.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { LoginComponent } from './pages/login/login.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch:'full' },
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     RightbarComponent,
     HomeComponent,
     RegisterComponent,
-    HostingplaceComponent
+    HostingplaceComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
