@@ -10,6 +10,7 @@ import (
 	"./model"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
+	"github.com/rs/cors"
 )
 
 // App has router and db instances
@@ -34,6 +35,7 @@ func (a *App) Initialize(config *config.Config) {
 	a.DB = model.DBMigrate(db)
 	a.Router = mux.NewRouter()
 	a.setRouters()
+
 }
 
 // Set all required routers
@@ -55,25 +57,35 @@ func (a *App) setRouters() {
 	a.Delete("/users/{id}", a.DeleteUser)
 	a.Put("/users/{id}/disable", a.DisableUser)
 	a.Put("/users/{id}/enable", a.EnableUser)
+	// Routing for handling user
+	a.Post("/login", a.Login)
+	a.Post("/register", a.Register)
+	// Routing for handling user
+
 }
 
 // Wrap the router for GET method
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.Use(JwtAuthentication)
 	a.Router.HandleFunc(path, f).Methods("GET")
+
 }
 
 // Wrap the router for POST method
 func (a *App) Post(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.Use(JwtAuthentication)
 	a.Router.HandleFunc(path, f).Methods("POST")
 }
 
 // Wrap the router for PUT method
 func (a *App) Put(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.Use(JwtAuthentication)
 	a.Router.HandleFunc(path, f).Methods("PUT")
 }
 
 // Wrap the router for DELETE method
 func (a *App) Delete(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.Use(JwtAuthentication)
 	a.Router.HandleFunc(path, f).Methods("DELETE")
 }
 
@@ -138,8 +150,21 @@ func (a *App) DisableUser(w http.ResponseWriter, r *http.Request) {
 func (a *App) EnableUser(w http.ResponseWriter, r *http.Request) {
 	handler.EnableUser(a.DB, w, r)
 }
+func (a *App) Login(w http.ResponseWriter, r *http.Request) {
+	handler.Login(a.DB, w, r)
+
+}
+func (a *App) Register(w http.ResponseWriter, r *http.Request) {
+	handler.Register(a.DB, w, r)
+}
 
 // Run the app on it's router
 func (a *App) Run(host string) {
-	log.Fatal(http.ListenAndServe(host, a.Router))
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowCredentials: true,
+	})
+
+	handler := c.Handler(a.Router)
+	log.Fatal(http.ListenAndServe(host, handler))
 }

@@ -123,7 +123,7 @@ func getUserOr404(db *gorm.DB, id string, w http.ResponseWriter, r *http.Request
 		fmt.Println(err)
 	}
 	ad := uint(ud)
-	if err := db.First(&user, model.User{Id_user: ad}).Error; err != nil {
+	if err := db.First(&user, ad).Error; err != nil {
 		respondError(w, http.StatusNotFound, err.Error())
 		return nil
 	}
