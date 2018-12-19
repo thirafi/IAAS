@@ -27,6 +27,8 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/bootstrap/dist/css/style.css",
               "src/assets/node_modules/horizontal-timeline/css/horizontal-timeline.css",
+              "src/assets/node_modules/sweetalert/sweetalert.css",
+              "src/assets/node_modules/wizard/steps.css",
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.slim.min.js",
@@ -35,6 +37,11 @@
               "src/assets/node_modules/jquery/jquery-3.2.1.min.js",
               "./node_modules/bootstrap/dist/js/custom.min.js",
               "src/assets/node_modules/horizontal-timeline/js/horizontal-timeline.js",
+              "src/assets/node_modules/wizard/jquery.validate.min.js",
+              "src/assets/node_modules/wizard/jquery.steps.min.js",
+              "src/assets/node_modules/moment/min/moment.min.js",
+              "src/assets/node_modules/wizard/steps.js",
+              "src/assets/node_modules/sweetalert/sweetalert.min.js",
             ]
           },
           "configurations": {
