@@ -13,13 +13,25 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HostingplaceComponent } from './pages/hostingplace/hostingplace.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './pages/login/login.component';
+import { CeresComponent } from './categories/ceres/ceres.component';
+import { ArchimedesComponent } from './categories/archimedes/archimedes.component';
+import { LibertasComponent } from './categories/libertas/libertas.component';
+import { LogbookComponent } from './pages/logbook/logbook.component';
+import { StatusComponent } from './pages/status/status.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch:'full' },
   { path: 'Home', component: HomeComponent },
-  { path: 'Register',      component: RegisterComponent },
+  { path: 'Register',  component: RegisterComponent },
+  { path: 'Logbook', component: LogbookComponent },
+  { path: 'Status', component: StatusComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'HostingPlace', component: HostingplaceComponent },
+  { path: 'Archimedes', component: ArchimedesComponent },
+  { path: 'Libertas', component: LibertasComponent },
+  { path: 'Ceres', component: CeresComponent },
+  { path: 'Dashboard', component: DashboardComponent },
+
 
 ];
 
@@ -34,7 +46,12 @@ const appRoutes: Routes = [
     HomeComponent,
     RegisterComponent,
     HostingplaceComponent,
-    LoginComponent
+    LoginComponent,
+    CeresComponent,
+    ArchimedesComponent,
+    LibertasComponent,
+    LogbookComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
