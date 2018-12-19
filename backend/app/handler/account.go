@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"os"
 
@@ -62,10 +61,10 @@ func Login(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 func geAccountOr404(db *gorm.DB, email string, w http.ResponseWriter, r *http.Request) *model.Account {
 	account := model.Account{}
-	if err := db.Where("email = ?", email).First(&account).Error; err != nil {
-		fmt.Println("akun id ", account.ID)
+	if err := db.First(&account, model.Account{Email: email}).Error; err != nil {
 		respondError(w, http.StatusNotFound, err.Error())
 		return nil
 	}
 	return &account
 }
+
