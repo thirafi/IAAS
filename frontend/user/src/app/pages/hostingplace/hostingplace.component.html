@@ -1,3 +1,98 @@
-<p>
-  hostingplace works!
-</p>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-success">
+        <h4 class="m-b-0 text-white"> Browse Hosting Places </h4>
+      </div>
+      <div class="card-body">
+        <form action="routerLink(HostingPlace)">
+          <div class="form-body">
+            <h3 class="card-title" style="text-align:center;"> Find the most suitable Hosting Place Here!</h3>
+            <hr>
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Keyword: Company">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Location: City">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select class="form-control custom-select">
+                    <option selected>All categories</option>
+                    <option>Ceres</option>
+                    <option>Archimedes</option>
+                    <option>Libertas</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row p-t-20">
+              <div class="col-md-4">
+                <label>Length of Internship</label>
+                <div class="checkall-group">
+                  <div class="checkbox">
+                    <input type="checkbox" id="contract1" name="contract" checked>
+                    <label for="contract1">All types</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="contract2" name="contract">
+                    <label for="contract2">2 Weeks Long</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="contract3" name="contract">
+                    <label for="contract3">4 Weeks Long</label>
+                  </div>
+
+                  <div class="checkbox">
+                    <input type="checkbox" id="contract4" name="contract">
+                    <label for="contract4">8 Weeks Long</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Provided Accomodation</label>
+                  <div class="checkall-group">
+                    <div class="checkbox">
+                      <input type="checkbox" id="accomodation1" name="accomodation" checked>
+                      <label for="accomodation1">All Accomodation</label>
+                    </div>
+
+                    <div class="checkbox">
+                      <input type="checkbox" id="accomodation2" name="accomodation">
+                      <label for="accomodation2">Free Meals</label>
+                    </div>
+
+                    <div class="checkbox">
+                      <input type="checkbox" id="accomodation3" name="accomodation">
+                      <label for="accomodation3">Free Home Stay</label>
+                    </div>
+
+                    <div class="checkbox">
+                      <input type="checkbox" id="accomodation4" name="accomodation">
+                      <label for="accomodation4">Provide Salary</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success"> Apply Filter </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

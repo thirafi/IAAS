@@ -15,6 +15,7 @@ import { HostingplaceComponent } from './pages/hostingplace/hostingplace.compone
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'Regsiter',      component: RegisterComponent },
+  { path: 'HostingPlace', component: HostingplaceComponent },
 
 ];
 
