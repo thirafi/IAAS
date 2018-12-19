@@ -13,6 +13,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HostingplaceComponent } from './pages/hostingplace/hostingplace.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './pages/login/login.component';
+import { CeresComponent } from './categories/ceres/ceres.component';
+import { ArchimedesComponent } from './categories/archimedes/archimedes.component';
+import { LibertasComponent } from './categories/libertas/libertas.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch:'full' },
@@ -20,6 +23,9 @@ const appRoutes: Routes = [
   { path: 'Register',      component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'HostingPlace', component: HostingplaceComponent },
+  { path: 'Archimedes', component: ArchimedesComponent },
+  { path: 'Libertas', component: LibertasComponent },
+  { path: 'Ceres', component: CeresComponent },
 
 ];
 
@@ -34,7 +40,10 @@ const appRoutes: Routes = [
     HomeComponent,
     RegisterComponent,
     HostingplaceComponent,
-    LoginComponent
+    LoginComponent,
+    CeresComponent,
+    ArchimedesComponent,
+    LibertasComponent
   ],
   imports: [
     BrowserModule,
