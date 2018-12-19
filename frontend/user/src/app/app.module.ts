@@ -11,8 +11,10 @@ import { RightbarComponent } from './elements/rightbar/rightbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HostingplaceComponent } from './pages/hostingplace/hostingplace.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch:'full' },
   { path: 'home', component: HomeComponent },
   { path: 'Regsiter',      component: RegisterComponent },
   { path: 'HostingPlace', component: HostingplaceComponent },
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-    )
+    ),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
