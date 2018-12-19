@@ -12,13 +12,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HostingplaceComponent } from './pages/hostingplace/hostingplace.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { LoginComponent } from './pages/login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/Home', pathMatch:'full' },
-  { path: 'Home', component: HomeComponent },
-  { path: 'Register',      component: RegisterComponent },
-  { path: 'Login', component: LoginComponent },
+  { path: '', redirectTo: '/home', pathMatch:'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'Regsiter',      component: RegisterComponent },
   { path: 'HostingPlace', component: HostingplaceComponent },
 
 ];
@@ -33,8 +31,7 @@ const appRoutes: Routes = [
     RightbarComponent,
     HomeComponent,
     RegisterComponent,
-    HostingplaceComponent,
-    LoginComponent
+    HostingplaceComponent
   ],
   imports: [
     BrowserModule,
