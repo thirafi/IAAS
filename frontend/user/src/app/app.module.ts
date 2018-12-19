@@ -30,6 +30,8 @@ const appRoutes: Routes = [
   { path: 'Archimedes', component: ArchimedesComponent },
   { path: 'Libertas', component: LibertasComponent },
   { path: 'Ceres', component: CeresComponent },
+  { path: 'Dashboard', component: DashboardComponent },
+
 
 ];
 
