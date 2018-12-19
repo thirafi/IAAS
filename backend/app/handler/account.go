@@ -67,3 +67,4 @@ func geAccountOr404(db *gorm.DB, email string, w http.ResponseWriter, r *http.Re
 	}
 	return &account
 }
+

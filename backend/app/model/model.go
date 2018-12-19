@@ -19,7 +19,7 @@ type Account struct {
 	Password string `json:"password"`
 	Token    string `json:"token";sql:"-"`
 	Role     string `json:"city"`
-	Language []Language
+	
 }
 
 type User struct {
@@ -34,16 +34,17 @@ type User struct {
 	Hometown     string ` json:"hometown"`
 	Nationality  int    `json:"nationality"`
 	Status       bool   `json:"status"`
-	// Health       Health     `json:"health"`
-	// Address      Address    `json:"address"`
-	// Contact      Contact    `json:"contact"`
-	// Language     []Language `json:"language"`
-	// Period       []Period   `json:"period"`
+	// Language []Language
+	Health       Health     `json:"health"`
+	Address      Address    `json:"address"`
+	Contact      Contact    `json:"contact"`
+	Language     []Language `json:"language"`
+	Period       []Period   `json:"period"`
 }
 
 type Health struct {
 	gorm.Model
-	Account     Account
+	// Account     Account
 	AccountID   uint
 	Smoke       bool
 	Problem     string
@@ -52,7 +53,7 @@ type Health struct {
 
 type Address struct {
 	gorm.Model
-	Account    Account
+	// Account    Account
 	AccountID  uint
 	City       string `json:"city"`
 	Province   string `json:"province"`
@@ -61,7 +62,7 @@ type Address struct {
 
 type Contact struct {
 	gorm.Model
-	Account           Account
+	// Account           Account
 	AccountID         uint
 	Phone             uint   `json:"phone"`
 	EmergencyPhone    uint   `json:"emergencyphone"`
@@ -81,7 +82,7 @@ type Language struct {
 
 type Period struct {
 	gorm.Model
-	Account   Account
+	// Account   Account
 	AccountID uint
 	Start     string `json:"start"`
 	Finish    string `json:"finish"`
@@ -177,3 +178,4 @@ func DBMigrate(db *gorm.DB) *gorm.DB {
 	db.AutoMigrate(&Employee{}, &User{}, &Health{}, &Address{}, &Contact{}, &Language{}, &Period{}, &Account{}, &Company{}, &Job{}, &Prerequisite{}, &AddSelection{}, &Logistic{})
 	return db
 }
+
