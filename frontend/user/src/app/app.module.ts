@@ -15,9 +15,10 @@ import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch:'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'Regsiter',      component: RegisterComponent },
+  { path: '', redirectTo: '/Home', pathMatch:'full' },
+  { path: 'Home', component: HomeComponent },
+  { path: 'Register',      component: RegisterComponent },
+  { path: 'Login', component: LoginComponent },
   { path: 'HostingPlace', component: HostingplaceComponent },
 
 ];
