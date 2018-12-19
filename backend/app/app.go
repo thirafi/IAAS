@@ -60,6 +60,7 @@ func (a *App) setRouters() {
 	// Routing for handling user
 	a.Post("/login", a.Login)
 	a.Post("/register", a.Register)
+	a.Get("/account/{email}", a.GetAllAccount)
 	// Routing for handling user
 
 }
@@ -156,6 +157,10 @@ func (a *App) Login(w http.ResponseWriter, r *http.Request) {
 }
 func (a *App) Register(w http.ResponseWriter, r *http.Request) {
 	handler.Register(a.DB, w, r)
+}
+
+func (a *App) GetAllAccount(w http.ResponseWriter, r *http.Request) {
+	handler.GetAllAccount(a.DB, w, r)
 }
 
 // Run the app on it's router

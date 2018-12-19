@@ -11,6 +11,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+
 func GetAllUsers(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	users := []model.User{}
 	db.Find(&users)

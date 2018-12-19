@@ -19,12 +19,12 @@ type Account struct {
 	Password string `json:"password"`
 	Token    string `json:"token";sql:"-"`
 	Role     string `json:"city"`
-	
+	User     User
 }
 
 type User struct {
 	gorm.Model
-	Account      Account
+	// Account      Account
 	AccountID    uint
 	FirstName    string ` json:"firstname"`
 	LastName     string ` json:"lLastname"`
@@ -35,17 +35,17 @@ type User struct {
 	Nationality  int    `json:"nationality"`
 	Status       bool   `json:"status"`
 	// Language []Language
-	Health       Health     `json:"health"`
-	Address      Address    `json:"address"`
-	Contact      Contact    `json:"contact"`
-	Language     []Language `json:"language"`
-	Period       []Period   `json:"period"`
+	Health   Health     `json:"health"`
+	Address  Address    `json:"address"`
+	Contact  Contact    `json:"contact"`
+	Language []Language `json:"language"`
+	Period   []Period   `json:"period"`
 }
 
 type Health struct {
 	gorm.Model
 	// Account     Account
-	AccountID   uint
+	UserID      uint
 	Smoke       bool
 	Problem     string
 	Restriction string
@@ -54,7 +54,7 @@ type Health struct {
 type Address struct {
 	gorm.Model
 	// Account    Account
-	AccountID  uint
+	UserID     uint
 	City       string `json:"city"`
 	Province   string `json:"province"`
 	PostalCode uint   `json:"postalcode"`
@@ -63,7 +63,7 @@ type Address struct {
 type Contact struct {
 	gorm.Model
 	// Account           Account
-	AccountID         uint
+	UserID            uint
 	Phone             uint   `json:"phone"`
 	EmergencyPhone    uint   `json:"emergencyphone"`
 	EmergencyName     string `json:"emergencyname"`
@@ -77,16 +77,16 @@ type Language struct {
 	Structure string `json:"structure"`
 	Reading   string `json:"reading"`
 	Writing   string `json:"writing"`
-	AccountID uint
+	UserID    uint
 }
 
 type Period struct {
 	gorm.Model
 	// Account   Account
-	AccountID uint
-	Start     string `json:"start"`
-	Finish    string `json:"finish"`
-	Length    string `json:"length"`
+	UserID uint
+	Start  string `json:"start"`
+	Finish string `json:"finish"`
+	Length string `json:"length"`
 }
 
 type Company struct {
@@ -178,4 +178,3 @@ func DBMigrate(db *gorm.DB) *gorm.DB {
 	db.AutoMigrate(&Employee{}, &User{}, &Health{}, &Address{}, &Contact{}, &Language{}, &Period{}, &Account{}, &Company{}, &Job{}, &Prerequisite{}, &AddSelection{}, &Logistic{})
 	return db
 }
-
