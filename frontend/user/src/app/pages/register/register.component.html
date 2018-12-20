@@ -1,36 +1,38 @@
 <div class="row">
-<div class="col-sm-4">
-  </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Register as User</h4>
-                                <form class="form">
-                                    <div class="form-group m-t-40 row">
-                                        <label for="name" class="col-2 col-form-label">Name</label>
-                                        <div class="col-5">
-                                            <input class="form-control" type="text" value="" placeholder="Your Name" id="name-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                                        <div class="col-5">
-                                            <input class="form-control" type="email" placeholder="bootstrap@example.com" id="mail-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-password-input" class="col-2 col-form-label">Password</label>
-                                        <div class="col-5">
-                                            <input class="form-control" type="password" value="hunter2" id="example-password-input">
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                      <button type="submit" class="btn btn-success"> Register </button>
-                                    </div>
-                                </form>
-                            </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Register as User</h4>
+                <form class="form" #myForm="ngForm" novalidate>
+                    <div class="form-group m-t-40 row">
+                        <label for="example-email-input" class="col-2 col-form-label">Email</label>
+                        <div class="col-5  validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            <input [(ngModel)]="accountData.email" name="email" class="form-control" type="email" placeholder="bootstrap@example.com" id="mail-input">
+                            <span class="focus-input100"></span>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                      </div>
-                </div>
+                    <!-- <div class="form-group row">
+                        <label for="name" class="col-2 col-form-label">Name</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" value="" placeholder="Your Name" id="name-input">
+                        </div>
+                    </div> -->
+                    <div class="form-group row">
+                        <label for="example-password-input" class="col-2 col-form-label">Password</label>
+                        <div class="col-5">
+                            <input [(ngModel)]="accountData.password" name="password" class="form-control" type="password" id="example-password-input">
+                            <span class="focus-input100"></span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button (click)="register()" type="submit" class="btn btn-success"> Register </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>

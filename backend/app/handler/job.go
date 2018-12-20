@@ -38,82 +38,12 @@ func GetJob(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 
 	id := vars["id"]
-	job := getUserOr404(db, id, w, r)
+	job := getJobOr404(db, id, w, r)
 	if job == nil {
 		return
 	}
 	respondJSON(w, http.StatusOK, job)
 }
-
-// func UpdateUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-
-// 	id := vars["id"]
-// 	user := getUserOr404(db, id, w, r)
-// 	if user == nil {
-// 		return
-// 	}
-
-// 	decoder := json.NewDecoder(r.Body)
-// 	if err := decoder.Decode(&user); err != nil {
-// 		respondError(w, http.StatusBadRequest, err.Error())
-// 		return
-// 	}
-// 	defer r.Body.Close()
-
-// 	if err := db.Save(&user).Error; err != nil {
-// 		respondError(w, http.StatusInternalServerError, err.Error())
-// 		return
-// 	}
-// 	respondJSON(w, http.StatusOK, user)
-// }
-
-// func DeleteUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-
-// 	id := vars["id"]
-// 	user := getUserOr404(db, id, w, r)
-// 	if user == nil {
-// 		return
-// 	}
-// 	if err := db.Delete(&user).Error; err != nil {
-// 		respondError(w, http.StatusInternalServerError, err.Error())
-// 		return
-// 	}
-// 	respondJSON(w, http.StatusNoContent, nil)
-// }
-
-// func DisableUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-
-// 	id := vars["id"]
-// 	user := getUserOr404(db, id, w, r)
-// 	if user == nil {
-// 		return
-// 	}
-// 	user.Disable()
-// 	if err := db.Save(&user).Error; err != nil {
-// 		respondError(w, http.StatusInternalServerError, err.Error())
-// 		return
-// 	}
-// 	respondJSON(w, http.StatusOK, user)
-// }
-
-// func EnableUser(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-
-// 	id := vars["id"]
-// 	user := getUserOr404(db, id, w, r)
-// 	if user == nil {
-// 		return
-// 	}
-// 	user.Enable()
-// 	if err := db.Save(&user).Error; err != nil {
-// 		respondError(w, http.StatusInternalServerError, err.Error())
-// 		return
-// 	}
-// 	respondJSON(w, http.StatusOK, user)
-// }
 
 // getUserOr404 gets a user instance if exists, or respond the 404 error otherwise
 func getJobOr404(db *gorm.DB, id string, w http.ResponseWriter, r *http.Request) *model.Job {
@@ -124,8 +54,23 @@ func getJobOr404(db *gorm.DB, id string, w http.ResponseWriter, r *http.Request)
 	}
 	ad := uint(ud)
 	if err := db.First(&job, ad).Error; err != nil {
+		fmt.Println("udah jalan coi:", job)
 		respondError(w, http.StatusNotFound, err.Error())
 		return nil
 	}
 	return &job
 }
+
+// func getjobOr404(db *gorm.DB, id string, w http.ResponseWriter, r *http.Request) *model.Job {
+// 	job := model.Job{}
+// 	ud, err := strconv.ParseUint(id, 10, 64)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+// 	ad := uint(ud)
+// 	if err := db.First(&job, model.Job{ID: ad}).Error; err != nil {
+// 		respondError(w, http.StatusNotFound, err.Error())
+// 		return nil
+// 	}
+// 	return &job
+// }

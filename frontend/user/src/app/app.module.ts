@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -18,7 +20,7 @@ import { ArchimedesComponent } from './categories/archimedes/archimedes.componen
 import { LibertasComponent } from './categories/libertas/libertas.component';
 import { LogbookComponent } from './pages/logbook/logbook.component';
 import { StatusComponent } from './pages/status/status.component';
-
+import { FormsModule }   from '@angular/forms';
 const appRoutes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch:'full' },
   { path: 'Home', component: HomeComponent },
@@ -55,6 +57,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    HttpModule,
+    
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
     ),

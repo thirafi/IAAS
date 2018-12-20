@@ -9,9 +9,9 @@ import (
 
 	"../model"
 	jwt "github.com/dgrijalva/jwt-go"
+	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
-	"github.com/gorilla/mux"
 )
 
 func Register(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -52,26 +52,26 @@ func Login(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusNotFound, arr.Error())
 	}
 	//Worked! Logged In
-	account.Password = ""
+	account1.Password = ""
 
 	//Create JWT token
-	tk := model.Token{Id_user: account.ID}
+	tk := model.Token{Id_user: account1.ID}
 	token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), tk)
 	tokenString, _ := token.SignedString([]byte(os.Getenv("token_password")))
-	account.Token = tokenString
-	respondJSON(w, http.StatusCreated, account)
+	account1.Token = tokenString
+	respondJSON(w, http.StatusCreated, account1)
 }
 
 func GetAllAccount(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
-		vars := mux.Vars(r)
-	
-		email := vars["email"]
-		account := getAccountOr404(db, email, w, r)
-		if account == nil {
-			return
-		}
-		respondJSON(w, http.StatusOK, account)
+	vars := mux.Vars(r)
+
+	email := vars["email"]
+	account := getAccountOr404(db, email, w, r)
+	if account == nil {
+		return
 	}
+	respondJSON(w, http.StatusOK, account)
+}
 
 func getAccountOr404(db *gorm.DB, email string, w http.ResponseWriter, r *http.Request) *model.Account {
 	account := model.Account{}

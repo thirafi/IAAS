@@ -63,8 +63,10 @@ func (a *App) setRouters() {
 	a.Get("/account/{email}", a.GetAllAccount)
 	// Routing for handling user
 	a.Get("/jobs", a.GetAllJob)
+	a.Get("/job/{id}", a.GetJob)
 	a.Post("/job", a.CreateJob)
 	a.Get("/companies", a.GetAllCompany)
+	a.Get("/company/{id}", a.GetCompany)
 	a.Post("/company", a.CreateCompany)
 
 }
@@ -170,15 +172,22 @@ func (a *App) GetAllAccount(w http.ResponseWriter, r *http.Request) {
 func (a *App) GetAllJob(w http.ResponseWriter, r *http.Request) {
 	handler.GetAllJob(a.DB, w, r)
 }
+func (a *App) GetJob(w http.ResponseWriter, r *http.Request) {
+	handler.GetJob(a.DB, w, r)
+}
 func (a *App) CreateJob(w http.ResponseWriter, r *http.Request) {
 	handler.CreateJob(a.DB, w, r)
 }
 func (a *App) GetAllCompany(w http.ResponseWriter, r *http.Request) {
 	handler.GetAllCompany(a.DB, w, r)
 }
+func (a *App) GetCompany(w http.ResponseWriter, r *http.Request) {
+	handler.GetCompany(a.DB, w, r)
+}
 func (a *App) CreateCompany(w http.ResponseWriter, r *http.Request) {
 	handler.CreateCompany(a.DB, w, r)
 }
+
 // Run the app on it's router
 func (a *App) Run(host string) {
 	c := cors.New(cors.Options{
